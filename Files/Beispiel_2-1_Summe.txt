@@ -1,0 +1,7 @@
+// Beispiel 2-1: Summe zweier Zahlen
+//Eingabe: c(R1)=a, c(R2)=b, 
+//Ergebnis: c(R0)=a+b
+
+	Load	1
+	Add	2
+	End

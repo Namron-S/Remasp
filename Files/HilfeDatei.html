@@ -1,0 +1,192 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us">
+    <title>Hilfe Datei</title>
+    <body>
+
+        <h2> <a href="#allgAnmerkung"> Allgemeine Anmerkungen</a> </h2>
+
+        <h2> <a href="#Befehle"> Registermaschinen Befehlsübersicht</a> </h2>
+        <h2> <a href="#Editor"> Editor-Menü Übersicht</a> </h2>
+        <h2> <a href="#RM"> Registermaschinen Bedienung </a> </h2>     
+
+<h2><a name="allgAnmerkung">Allgemeine Anmerkungen</a></h2>
+
+<p><em>Sprungmarken</em>: Am Anfang jeder Befehlszeile kann eine Sprungmarke gesetzt werden. Der Name der Sprungmarke muss eindeutig unter allen Sprungmarkennamen sein und muss mit einem Doppelpunkt enden. Der Doppelpunkt selber gehört nicht zum Sprungmarkennamen.<br/>
+Bsp.: <br/>
+<code>
+...<br/>
+SchleifenAnfang: ADD 3 <br/>
+....</br>
+GOTO SchleifenAnfang<br/>
+...
+ </code>
+</p>
+
+<p>
+<em>Groß- und Kleinschreibung</em>: Befehlsnamen sind nicht "case sensitive". Es wird also nicht zwischen Groß- und Kleinschreibung unterschieden. </br>
+Bsp.: </br>
+Die Wörter <code>Goto, goto oder auch GOTO </code> stellen alle den gleichen Befehl dar.
+</p>
+
+<p>
+<em>Wertebereich der Register</em>: Die größte natürliche Zahl, die ein Register speichern kann, ist 9223372036854775807 (=2^63 - 1). Wird im Programm versucht eine größere Zahl zu speichern, so wird das Programm automatisch abgebrochen.
+</p>
+
+
+
+        <h2><a name="Befehle">Registermaschinen Befehlsübersicht</a></h2>
+	
+        <p>Wählen Sie einen Befehl aus</p>
+        <p><a href="#Befehl-Load"><em>LOAD</em></a></p>
+        <p><a href="#Befehl-Store"><em>STORE</em></a></p>
+        <p><a href="#Befehl-Add"><em>ADD</em></a></p>
+        <p><a href="#Befehl-Sub"><em>SUB</em></a></p>
+        <p><a href="#Befehl-Mul"><em>MUL</em></a></p>
+        <p><a href="#Befehl-Div"><em>DIV</em></a></p><p><a href="#Befehl-"><em></em></a></p>
+        <p><a href="#Befehl-Goto"><em>GOTO</em></a></p>
+        <p><a href="#Befehl-JZero"><em>JZERO</em></a></p>
+	<p><a href="#Befehl-JNZero"><em>JNZERO</em></a></p>
+        <p><a href="#Befehl-End"><em>END</em></a></p>
+
+
+        <p>&nbsp;</p>
+
+        <h3><em>LOAD</em><a name="Befehl-Load"></a></h3>
+        <code><strong>LOAD #n</strong></code>: Lädt die Konstante n in Register 0 (Akkumulator).<br>
+        <code><strong>LOAD n</strong></code>: Lädt den Inhalt von Register n in Register 0 (Akkumulator).<br>
+        <code><strong>LOAD *n</strong></code>: Lädt den Inhalt von demjenigen Register in Register 0 (Akkumulator), auf welches Register n zeigt.<br>
+        
+        <h3><em>STORE</em><a name="Befehl-Store"></a></h3>
+        <code><strong>STORE n</strong></code>: Speichert den Inhalt von Register 0 in Register n.<br>
+        <code><strong>STORE *n</strong></code>: Speichert den Inhalt von Register 0 in dasjenige Register, auf welches Register n zeigt. Register n darf hier nicht auf Register 0 zeigen, ansonsten wird das Programm abgebrochen.<br>
+        
+        
+        <h3><em>ADD</em><a name="Befehl-ADD"></a></h3>
+        <code><strong>ADD #n</strong></code>: Addiert die Konstante n zum Inhalt von Register 0 hinzu.<br>
+        <code><strong>ADD n</strong></code>: Addiert den Inhalt von Register n zum Inhalt von Register 0 hinzu.<br>
+        <code><strong>ADD *n</strong></code>: Addiert den Inhalat desjenigen Registers zum Inhalt von Register 0 hinzu, auf welches Register n zeigt.<br>
+
+        <h3><em>SUB</em><a name="Befehl-Sub"></a></h3>
+       <code><strong>SUB #n</strong></code>: Subtrahiert die Konstante n von Register 0.<br>
+       <code><strong>SUB n</strong></code>: Subtrahiert den Inhalt von Register n von Register 0.<br>
+       <code><strong>SUB *n</strong></code>: Subtrahiert den Inhalt desjenigen Registers von Register 0, auf welches Register n zeigt.<br>
+       Falls das Ergebnis der Subtraktion kleiner 0 ist, wird Register 0 auf 0 gesetzt.
+
+        <h3><em>MUL</em><a name="Befehl-Mul"></a></h3>
+        <code><strong>MUL #n</strong></code>: Multipliziert Register 0 mit der Konstante n.<br>
+        <code><strong>MUL n</strong></code>: Multipliziert Register 0 mit dem Inhalt von Register n.<br>
+        <code><strong>MUL *n</strong></code>: Multipliziert Register 0 mit dem Inhalt desjenigen Registers, auf welches Register n zeigt.<br>
+
+        <h3><em>DIV</em><a name="Befehl-Div"></a></h3>
+        <code><strong>DIV #n</strong></code>: Dividiert Register 0 durch die Konstante n.<br>
+        <code><strong>DIV n</strong></code>: Dividiert Register 0 durch den Inhalt von Register n.<br>
+        <code><strong>DIV *n</strong></code>: Dividiert Register 0 durch den Inhalt desjenigen Registers, auf welches Register n zeigt.<br>
+        Die Division ist ganzzahlig.
+
+        
+        <h3><em>GOTO</em><a name="Befehl-Goto"></a></h3>
+        <code><strong>GOTO Marke</strong></code>: Die Programmausführung springt zu der Befehlszeile, welche mit "Marke:" anfängt.
+
+        <h3><em>JZERO</em><a name="Befehl-JZero"></a></h3>
+        <code><strong>JZERO Marke</strong></code>: Die Programmausführung springt zu der Befehlszeile, welche mit "Marke:" anfängt, nur falls Register 0 = 0 ist. Falls Register 0 nicht gleich 0 ist, wird die nächste Befehlszeile ausgeführt.
+
+	<h3><em>JNZERO</em><a name="Befehl-JNZero"></a></h3>
+        <code><strong>JNZERO j</strong></code>: Die Programmausführung springt zu der Befehlszeile, welche mit "Marke:" anfängt, nur falls Register 0 ungleich 0 ist. Falls Register 0 gleich 0 ist, wird die nächste Befehlszeile ausgeführt.
+
+
+         <h3><em>END</em><a name="Befehl-End"></a></h3>
+         <code><strong>END</strong></code>: Das Programm wird beendet. Der <code><strong>End</strong></code>-Befehl muss in der letzten Befehlszeile stehen.
+
+
+
+        <h2> <a name="Editor"> Editor-Menü Übersicht</a></h2>
+        <p>Wählen Sie einen Menüpunkt:</p>
+        <p><a href="#Datei-Neu">Datei-<em>Neu</em></a></p>
+        <p><a href="#Datei-Öffnen">Datei-<em>Öffnen</em></a></p>
+        <p><a href="#Datei-Speichern">Datei-<em>Speichern</em></a></p>
+        <p><a href="#Datei-SpeichernUnter">Datei-<em>Speichern unter</em></a></p>
+        <p><a href="#Datei-Drucken">Datei-<em>Drucken</em></a></p>
+        <p><a href="#Datei-Beenden">Datei-<em>Beenden</em></a></p>
+        <p><a href="#Bearbeiten-Rückgängig">Bearbeiten-<em>Rückgängig</em></a></p>
+        <p><a href="#Bearbeiten-Ausschneiden">Bearbeiten-<em>Ausschneiden</em></a></p>
+        <p><a href="#Bearbeiten-Kopieren">Bearbeiten-<em>Kopieren</em></a></p>
+        <p><a href="#Bearbeiten-Einfügen">Bearbeiten-<em>Einfügen</em></a></p>
+        <p><a href="#Format-Schriftausrichtung">Format-<em>Fett, Kursiv, Unterstrichen</em></a></p>
+<!--        <p><a href="#Format-Schriftgröße">Format-<em>12...24</em></a></p>-->
+        <p><a href="#Format-Schriftart">Format-<em>Serif, SansSerif</em></a></p>
+        <p><a href="#Format-Farbe">Format-<em>Rot, Grün, Blau, Schwarz</em></a></p>
+        <p>&nbsp;</p>
+
+        <h3>Datei-<em>Neu</em><a name="Datei-Neu"></a></h3>
+        Erstellt ein neues, leeres Dokument. Gegebenenfalls wird gefragt, ob das aktuelle Dokument gespeichert werden soll.
+        <br>Tastenkürzel: Strg+n
+
+        <h3>Datei-<em>Öffnen</em><a name="Datei-Öffnen"></a></h3>
+        Lädt eine beliebige Textdatei im Editor.
+        <br>Tastenkürzel: Strg+o
+
+        <h3>Datei-<em>Speichern</em> <a name="Datei-Speichern"></a></h3>
+        Speichert das aktuelle Dokument. Falls noch kein Dateiname vergeben ist, wird nach einem gefragt.
+        <br>Tastenkürzel: Strg+s
+
+        <h3>Datei-<em>Speichern unter</em> <a name="Datei-SpeichernUnter"></a></h3>
+        Speichert das Dokument unter einem angegebenen Namen.
+
+        <h3>Datei-<em>Drucken</em> <a name="Datei-Drucken"></a></h3>
+        Die Datei kann über die im System vorhandenen Drucker gedruckt werden.
+        <br>Tastenkürzel: Strg+p
+
+        <h3>Datei-<em>Beenden</em> <a name="Datei-Beenden"></a></h3>
+        Beendet die komplette Simulationsumgebung.
+
+        <h3>Bearbeiten-<em>Rückgängig</em> <a name="Bearbeiten-Rückgängig"></a></h3>
+        Macht die zuletzt getätigte Änderung im Editor rückgängig.
+        <br>Tastenkürzel: Strg+z.
+
+        <h3>Bearbeiten-<em>Ausschneiden</em>  <a name="Bearbeiten-Ausschneiden"></a></h3>
+        Schneidet die markierte Textstelle aus und kopiert sie in die Zwischenablage.
+        <br>Tastenkürzel: Strg+x
+
+        <h3> Bearbeiten-<em>Kopieren</em> <a name="Bearbeiten-Kopieren"></a></h3>
+        Kopiert die markierte Textstelle in die Zwischenablage.
+        <br>Tastenkürzel: Strg+c
+
+        <h3> Bearbeiten-<em>Einfügen</em> <a name="Bearbeiten-Einfügen"></a></h3>
+        Fügt den Inhalt der Zwischenablage in die aktuelle Cursor Position ein. Es kann nur Text eingefügt werden.
+        <br>Tastenkürzel: Strg+v
+
+        <h3>Format-<em>Fett, Kursiv, Unterstrichen</em>  <a name="Format-Schriftausrichtung"></a></h3>
+        Formatiert den ausgewählten Text fett, kursiv oder unterstrichen.
+
+<!--        <h3> Format-<em>12..24</em><a name="Format-Schriftgröße"></a></h3>
+        Hier kann die Schriftgröße eingestellt werden.-->
+
+        <h3> Format-<em>Serif, SansSerif</em><a name="Format-Schriftart"></a></h3>
+        Als Schriftarten stehen Serif und SansSerif zur Verfügung.
+
+        <h3>Format-<em>Rot, Grün, Blau, Schwarz</em> <a name="Format-Farbe"></a></h3>
+        Lässt den ausgewählten Text in der entsprechenden Farbe erscheinen.
+
+
+
+
+        <h2><a name="RM">Registermaschinen Bedienung</a></h2>
+               
+        <h3>Maschinensteuerung</h3>
+        <img src="Hilfe-Datei-MaschinenSteuerung.png" alt="Maschinen Konfiguration" width="75%" height="75%" > <br>
+        Über den Button <strong>"Starte Programm"</strong> wird das, sich im Editor befindende, Programm ausgeführt. Die Ausführungsgeschwindigkeit kann im untersten Regler "Millisekunen pro Befehl" eingestsellt werden.<br>
+        Über den Button <strong>"Starte Einzelschrittmodus"</strong> wird der Einzelschrittmodus aktiviert. In diesem Modus wird der aktuelle Befehl nur ausgeführt, falls die Pfeiltaste betätigt wird. <br>
+        Über den Button <strong>"Programm abbrechen"</strong> wird die aktuelle Programmausführung abgebrochen. Das Programm wird also beendet.<br>
+
+        
+        <h3>Maschinenkonfiguration</h3>
+        <img src="Hilfe-Datei-MaschinenKonfiguration.png" alt="Maschinen Konfiguration" width="75%" height="75%"> <br>
+        Über die vier Buttons können die Register konfiguriert werden. <strong>"Register zwischenspeichern"</strong> speichert die aktuelle Registerbelegung zwischen. <br>
+        Über den Button <strong>"Register laden"</strong> kann eine zuvor gespeicherte Registerbelegung geladen werden. <br>
+        Über den Button <strong>"Register auf 0 setzen"</strong> werden alle Register auf 0 gesetzt. <br>
+        Über den Button <strong>"Setze Anzahl Register"</strong> kann die Anzahl der Register gesetzt werden. Es ist dabei zu beachten, 
+        dass bei diesem Vorgang die Registerinhalte gelöscht werden, danach sind also alle Register mit 0 initialisiert. Die Anzahl der Register sollte nicht höher als 500 Tausend sein. <br>
+        
+    </body>
+</html>
