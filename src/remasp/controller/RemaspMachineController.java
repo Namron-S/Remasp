@@ -556,7 +556,7 @@ public class RemaspMachineController {
         public void actionPerformed(ActionEvent ae) {
             meldungAusgeben("ReMaSp: Ein RegisterMaschinen Simulationsprogramm.\n"
                     + "Copyright (C) 2017 Norman Sutatyo\n"
-                    + "Lizenz: GNU GENERAL PUBLIC LICENSE, Version 3");
+                    + "Lizenz:  3-clause BSD license");
         }
     }
 
